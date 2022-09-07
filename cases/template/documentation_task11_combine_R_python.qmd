@@ -1,0 +1,89 @@
+---
+title: "Combining R and Python in the same document"
+author:
+  - name: "Write your name here"
+    url: http://yourwebsite.com
+    affiliation: Your affiliation
+    affiliation-url: http://yourwebsite.com
+    orcid: 0000-0000-0000-0000
+  - name: "Copy/adapt the previous for the subsequent authors"
+format: html
+editor: visual
+---
+
+::: callout-note
+
+### Quarto references
+
+You may want to read these quarto guides regarding [authoring with markdown](https://quarto.org/docs/authoring/markdown-basics.html) and [using the article layout](https://quarto.org/docs/authoring/article-layout.html).
+
+:::
+
+
+:::{.column-body-outset}
+
+:::
+
+## Goal
+
+https://github.com/WarwickCIM/quarto-workshop/issues/11
+
+## Tools
+
+### Used tools
+
+Some members of the group used Quarto VSCode plugin, others just used basic text editor (e.g. emacs)
+to edit the .qmd files, and called `quarto render` from the command line.
+We all used both Python and R, and one member also used Julia.
+
+## Detailed Process
+
+
+-   Step 1: Installed quarto binary following instructions on https://quarto.org/docs/get-started/
+
+-   Step 2: Try the basic "hello" demo (basic plot in Python) using instructions on https://quarto.org/docs/get-started/hello/text-editor.html.   Here, those of us using M1 Macs found that we needed to ensure we were using Python built for ARM processors.
+-   Step 3: Try the basic "Using R" demo (basic plot in R) using instructions on https://quarto.org/docs/computations/r.html.   Those of us using M1 Macs again had to ensure we were using the ARM build of R.   We also needed to install a couple of R packages: "rmarkdown" and "reticulate" in addition to "ggplot2".
+-   Step 4: Adapt one of the demo .qmd files to contain both R and Python cells, passing variables between them.
+
+
+
+## Discussion
+
+We found that we could interoperably use both Python and R in the same document, with the following syntax to pass variables from Python to R:
+
+```{python}
+# create variable in Python
+a=4
+```
+
+```{r}
+# read it in R
+library(reticulate)
+print(py$a)
+```
+Or the following syntax to use R variables in Python
+```{r}
+# create variable in R
+b=5
+```
+
+```{python}
+# read it in Python
+print(r.b)
+```
+
+i.e. we are essentially using Reticulate for the R/Python communication.
+
+## Conclusion
+
+You can follow this outline if useful (or delete/merge this section)
+
+-   Concluding remarks
+
+-   Limitations
+
+-   Future actions
+
+## References
+
+Links, books... that may complement this article
